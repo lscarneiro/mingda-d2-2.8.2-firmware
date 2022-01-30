@@ -25,11 +25,11 @@
 // 320*320*400
 // 420*420*400
 // The size of the print bed
-#define X_BED_SIZE 320
-#define Y_BED_SIZE 320
-#define Z_MAX_POS  400
+#define X_BED_SIZE 230
+#define Y_BED_SIZE 230
+#define Z_MAX_POS  260
 
- #define D301_AUTO_LEVELING
+// #define D301_AUTO_LEVELING
 
 #ifdef D301_AUTO_LEVELING
   #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
@@ -88,7 +88,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(MD, D301 V1.0)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "Luiz Eduardo" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -441,11 +441,11 @@
 //#define TEMP_SENSOR_1_AS_REDUNDANT
 #define MAX_REDUNDANT_TEMP_SENSOR_DIFF 10
 
-#define TEMP_RESIDENCY_TIME     5  // (seconds) Time to wait for hotend to "settle" in M109
+#define TEMP_RESIDENCY_TIME      5  // (seconds) Time to wait for hotend to "settle" in M109
 #define TEMP_WINDOW              1  // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_HYSTERESIS          3  // (°C) Temperature proximity considered "close enough" to the target
 
-#define TEMP_BED_RESIDENCY_TIME 10  // (seconds) Time to wait for bed to "settle" in M190
+#define TEMP_BED_RESIDENCY_TIME  5  // (seconds) Time to wait for bed to "settle" in M190
 #define TEMP_BED_WINDOW          1  // (°C) Temperature proximity for the "temperature reached" timer
 #define TEMP_BED_HYSTERESIS      3  // (°C) Temperature proximity considered "close enough" to the target
 
@@ -494,9 +494,9 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
   // Creality Ender-3
-  #define DEFAULT_Kp 10.00
-  #define DEFAULT_Ki 0.25
-  #define DEFAULT_Kd 51.03
+  #define DEFAULT_Kp 12.56
+  #define DEFAULT_Ki 0.8
+  #define DEFAULT_Kd 49.31
 
 #endif // PIDTEMP
 
@@ -539,7 +539,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
 //#define BED_LIMIT_SWITCHING
 
@@ -557,9 +557,9 @@
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 10.00
-  #define DEFAULT_bedKi .023
-  #define DEFAULT_bedKd 305.4
+  #define DEFAULT_bedKp 108.13
+  #define DEFAULT_bedKi 21.08
+  #define DEFAULT_bedKd 369.84
 
   //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   //from pidautotune
@@ -587,7 +587,7 @@
  * Note: For Bowden Extruders make this large enough to allow load/unload.
  */
 #define PREVENT_LENGTHY_EXTRUDE
-#define EXTRUDE_MAXLENGTH 600
+#define EXTRUDE_MAXLENGTH 500
 
 //===========================================================================
 //======================== Thermal Runaway Protection =======================
@@ -707,7 +707,7 @@
 
 // Enable this feature if all enabled endstop pins are interrupt-capable.
 // This will remove the need to poll the interrupt pins, saving many CPU cycles.
-//#define ENDSTOP_INTERRUPTS_FEATURE
+// #define ENDSTOP_INTERRUPTS_FEATURE
 
 /**
  * Endstop Noise Threshold
@@ -748,14 +748,14 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 79.25, 79.25, 800, 400 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 800, 100 }
 
 /**
  * Default Max Feed Rate (mm/s)
  * Override with M203
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 200, 200, 5, 45 }
+#define DEFAULT_MAX_FEEDRATE          { 200, 200, 20, 100 }
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
@@ -768,7 +768,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 600, 600, 300, 800 }
+#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 100, 5000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -783,9 +783,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          600    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  800    // E acceleration for retracts
-#define DEFAULT_TRAVEL_ACCELERATION   800    // X, Y, Z acceleration for travel (non printing) moves
+#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  5000    // E acceleration for retracts
+#define DEFAULT_TRAVEL_ACCELERATION   1000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
  * Default Jerk limits (mm/s)
@@ -797,8 +797,8 @@
  */
 #define CLASSIC_JERK
 #if ENABLED(CLASSIC_JERK)
-  #define DEFAULT_XJERK 20.0
-  #define DEFAULT_YJERK 20.0
+  #define DEFAULT_XJERK 10.0
+  #define DEFAULT_YJERK 10.0
   #define DEFAULT_ZJERK  0.4
 
   //#define LIMITED_JERK_EDITING        // Limit edit via M205 or LCD to DEFAULT_aJERK * 2
@@ -1129,7 +1129,7 @@
 #define FILAMENT_RUNOUT_SENSOR
 #if ENABLED(FILAMENT_RUNOUT_SENSOR)
   #define NUM_RUNOUT_SENSORS   1     // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
-  #define FIL_RUNOUT_INVERTING true // Set to true to invert the logic of the sensor.
+  #define FIL_RUNOUT_INVERTING false // Set to true to invert the logic of the sensor.
   #define FIL_RUNOUT_PULLUP          // Use internal pullup for filament runout pins.
   //#define FIL_RUNOUT_PULLDOWN      // Use internal pulldown for filament runout pins.
 
@@ -1349,8 +1349,8 @@
 #endif
 
 // Homing speeds (mm/m)
-#define HOMING_FEEDRATE_XY (20*60)
-#define HOMING_FEEDRATE_Z  (4*60)
+#define HOMING_FEEDRATE_XY (80*60)
+#define HOMING_FEEDRATE_Z  (15*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1440,9 +1440,9 @@
 // When enabled Marlin will send a busy status message to the host
 // every couple of seconds when it can't accept commands.
 //
-//#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
-//#define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
-//#define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
+#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
+#define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
+#define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
 
 //
 // M100 Free Memory Watcher
@@ -1463,8 +1463,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 185
-#define PREHEAT_1_TEMP_BED     45
+#define PREHEAT_1_TEMP_HOTEND 190
+#define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
